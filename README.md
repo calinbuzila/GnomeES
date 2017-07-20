@@ -1,3 +1,3 @@
 # G54_PRO
 
-Gnome Escape - platformer
+Gnome Escape - game
