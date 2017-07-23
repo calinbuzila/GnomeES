@@ -13,6 +13,8 @@ public class EnemyController : MonoBehaviour
     public float rayDistance;
     public LayerMask LayerMaskToCollide;
     private NavMeshAgent navmeshAgent;
+    public float rayOffset;
+    public bool isStationary = false;
 
     public NavMeshAgent NavmeshAgent
     {
@@ -30,7 +32,7 @@ public class EnemyController : MonoBehaviour
         get { return initialPositionTransform; }
         set { initialPositionTransform = value; }
     }
-
+    GameController mainGameController = null;
 
     void Start()
     {
@@ -44,8 +46,12 @@ public class EnemyController : MonoBehaviour
             targets.Capacity += 1;
             targets.Insert(0, InitialPositionTransform);
             //Debug.Log(InitialPositionTransform.position);
-            navmeshAgent.SetDestination(new Vector3(this.targets[1].position.x, this.targets[1].position.y, this.targets[1].position.z));
+            if (!isStationary)
+            {
+                navmeshAgent.SetDestination(new Vector3(this.targets[1].position.x, this.targets[1].position.y, this.targets[1].position.z));
+            }
         }
+        mainGameController = GameObject.FindObjectOfType<GameController>();
     }
 
     // Update is called once per frame
@@ -56,35 +62,37 @@ public class EnemyController : MonoBehaviour
 
     void FixedUpdate()
     {
-
-        // substract a difference vector between destination and current enemy agent and compare it to te final stoppingdistance, which is usually 0 and an errorRate is added to improve calculations
-        if (Vector3.Distance(navmeshAgent.destination, navmeshAgent.transform.position) < navmeshAgent.stoppingDistance + errorRate)
+        if (!isStationary)
         {
-
-            if (!navmeshAgent.hasPath)
+            // substract a difference vector between destination and current enemy agent and compare it to te final stoppingdistance, which is usually 0 and an errorRate is added to improve calculations
+            if (Vector3.Distance(navmeshAgent.destination, navmeshAgent.transform.position) < navmeshAgent.stoppingDistance + errorRate)
             {
-                if (currentTarget >= targets.Capacity - 1)
+
+                if (!navmeshAgent.hasPath)
                 {
-
-                    currentTarget = 0;
-                    if (currentTarget < targets.Capacity)
+                    if (currentTarget >= targets.Capacity - 1)
                     {
-                        //Debug.Log("!!!!! " + currentTarget + "_____ " + targets.Capacity);
-                        navmeshAgent.SetDestination(new Vector3(this.targets[currentTarget].position.x, this.targets[currentTarget].position.y, this.targets[currentTarget].position.z));
-                    }
-                }
-                else
-                {
-                    currentTarget++;
 
-                    if (currentTarget < targets.Capacity)
+                        currentTarget = 0;
+                        if (currentTarget < targets.Capacity)
+                        {
+                            //Debug.Log("!!!!! " + currentTarget + "_____ " + targets.Capacity);
+                            navmeshAgent.SetDestination(new Vector3(this.targets[currentTarget].position.x, this.targets[currentTarget].position.y, this.targets[currentTarget].position.z));
+                        }
+                    }
+                    else
                     {
-                        //Debug.Log("?????  " + currentTarget + "_____ " + targets.Capacity);
-                        navmeshAgent.SetDestination(new Vector3(this.targets[currentTarget].position.x, this.targets[currentTarget].position.y, this.targets[currentTarget].position.z));
+                        currentTarget++;
+
+                        if (currentTarget < targets.Capacity)
+                        {
+                            //Debug.Log("?????  " + currentTarget + "_____ " + targets.Capacity);
+                            navmeshAgent.SetDestination(new Vector3(this.targets[currentTarget].position.x, this.targets[currentTarget].position.y, this.targets[currentTarget].position.z));
+                        }
+
                     }
 
                 }
-
             }
         }
         RayCastingDetection();
@@ -98,12 +106,67 @@ public class EnemyController : MonoBehaviour
         Ray castedRay = new Ray(currentPositionOfEnemy.position, currentPositionOfEnemy.forward);
         if (Physics.Raycast(castedRay, out target, rayDistance, (int)LayerMaskToCollide))
         {
-            Debug.Log(target.collider.gameObject);
             if (target.collider.tag == SelectionCodes.GameTags.Player.ToString())
             {
-
+                Debug.Log("HITT");
+                if (mainGameController != null)
+                {
+                    mainGameController.CaughtAndStopGame();
+                }
             }
         }
-        //Debug.DrawRay(currentPositionOfEnemy.position, currentPositionOfEnemy.forward * rayDistance, Color.red);
+
+        Ray castedRay2 = new Ray(currentPositionOfEnemy.position, currentPositionOfEnemy.right);
+        if (Physics.Raycast(castedRay2, out target, rayDistance, (int)LayerMaskToCollide))
+        {
+            if (target.collider.tag == SelectionCodes.GameTags.Player.ToString())
+            {
+                Debug.Log("HITT+++");
+                if (mainGameController != null)
+                {
+                    mainGameController.CaughtAndStopGame();
+                }
+            }
+        }
+
+        Ray castedRay3 = new Ray(currentPositionOfEnemy.position, -currentPositionOfEnemy.right);
+        if (Physics.Raycast(castedRay3, out target, rayDistance, (int)LayerMaskToCollide))
+        {
+            if (target.collider.tag == SelectionCodes.GameTags.Player.ToString())
+            {
+                Debug.Log("HITT---");
+                if (mainGameController != null)
+                {
+                    mainGameController.CaughtAndStopGame();
+                }
+            }
+        }
+
+        //Ray castedRay4 = new Ray(currentPositionOfEnemy.position, currentPositionOfEnemy.right + new Vector3(rayOffset,currentPositionOfEnemy.position.y, currentPositionOfEnemy.position.z));
+        //if (Physics.Raycast(castedRay, out target, rayDistance, (int)LayerMaskToCollide))
+        //{
+        //    if (target.collider.tag == SelectionCodes.GameTags.Player.ToString())
+        //    {
+
+        //    }
+        //}
+
+        //Ray castedRay5 = new Ray(currentPositionOfEnemy.position, -currentPositionOfEnemy.right + new Vector3(rayOffset,currentPositionOfEnemy.position.y, currentPositionOfEnemy.position.z));
+        //if (Physics.Raycast(castedRay, out target, rayDistance, (int)LayerMaskToCollide))
+        //{
+        //    if (target.collider.tag == SelectionCodes.GameTags.Player.ToString())
+        //    {
+
+        //    }
+        //}
+
+        Debug.DrawRay(currentPositionOfEnemy.position, currentPositionOfEnemy.forward * rayDistance, Color.red);
+        Debug.DrawRay(currentPositionOfEnemy.position, (currentPositionOfEnemy.right) * rayDistance, Color.blue);
+        Debug.DrawRay(currentPositionOfEnemy.position, (-currentPositionOfEnemy.right) * rayDistance, Color.green);
+        //Vector3 newRay = currentPositionOfEnemy.forward;
+        //newRay.z += rayOffset;
+        //Debug.Log(newRay);
+        //Debug.DrawRay(currentPositionOfEnemy.position, (currentPositionOfEnemy.forward + newRay) * rayDistance, Color.blue);
+
     }
 }
