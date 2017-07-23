@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class enemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour
 {
 
     // Use this for initialization
@@ -21,7 +21,6 @@ public class enemyController : MonoBehaviour
     private int currentTarget = 1;
     private float errorRate = 5.0f;
     private static Transform initialPositionTransform;
-    private bool isSetToInitialPosition = false;
 
     public Transform InitialPositionTransform
     {

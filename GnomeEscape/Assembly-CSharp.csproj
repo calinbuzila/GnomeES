@@ -46,8 +46,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\dwarfMain_Controller.cs" />
-     <Compile Include="Assets\Scripts\enemyController.cs" />
+     <Compile Include="Assets\Scripts\DwarfMain_Controller.cs" />
+     <Compile Include="Assets\Scripts\EnemyController.cs" />
+     <Compile Include="Assets\Scripts\EscapeController.cs" />
+     <Compile Include="Assets\Scripts\GameController.cs" />
+     <Compile Include="Assets\Scripts\MenuController.cs" />
+     <Compile Include="Assets\Scripts\SightController.cs" />
+     <Compile Include="Assets\SelectionCodes.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/NotsUniWork/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
