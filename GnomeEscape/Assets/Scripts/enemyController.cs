@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -9,6 +10,8 @@ public class EnemyController : MonoBehaviour
     // Use this for initialization
 
     public List<Transform> targets;
+    public float rayDistance;
+    public LayerMask LayerMaskToCollide;
     private NavMeshAgent navmeshAgent;
 
     public NavMeshAgent NavmeshAgent
@@ -84,6 +87,23 @@ public class EnemyController : MonoBehaviour
 
             }
         }
+        RayCastingDetection();
 
+    }
+
+    protected void RayCastingDetection()
+    {
+        RaycastHit target;
+        var currentPositionOfEnemy = this.transform;
+        Ray castedRay = new Ray(currentPositionOfEnemy.position, currentPositionOfEnemy.forward);
+        if (Physics.Raycast(castedRay, out target, rayDistance, (int)LayerMaskToCollide))
+        {
+            Debug.Log(target.collider.gameObject);
+            if (target.collider.tag == SelectionCodes.GameTags.Player.ToString())
+            {
+               
+            }
+        }
+        //Debug.DrawRay(currentPositionOfEnemy.position, currentPositionOfEnemy.forward * rayDistance, Color.red);
     }
 }
