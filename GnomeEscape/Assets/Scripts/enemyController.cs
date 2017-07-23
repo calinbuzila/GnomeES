@@ -101,7 +101,7 @@ public class EnemyController : MonoBehaviour
             Debug.Log(target.collider.gameObject);
             if (target.collider.tag == SelectionCodes.GameTags.Player.ToString())
             {
-               
+
             }
         }
         //Debug.DrawRay(currentPositionOfEnemy.position, currentPositionOfEnemy.forward * rayDistance, Color.red);
