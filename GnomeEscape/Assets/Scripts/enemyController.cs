@@ -14,6 +14,7 @@ public class EnemyController : MonoBehaviour
     public LayerMask LayerMaskToCollide;
     private NavMeshAgent navmeshAgent;
     public float rayOffset;
+    public float lateralRayDistance;
     public bool isStationary = false;
 
     public NavMeshAgent NavmeshAgent
@@ -117,7 +118,7 @@ public class EnemyController : MonoBehaviour
         }
 
         Ray castedRay2 = new Ray(currentPositionOfEnemy.position, currentPositionOfEnemy.right);
-        if (Physics.Raycast(castedRay2, out target, rayDistance, (int)LayerMaskToCollide))
+        if (Physics.Raycast(castedRay2, out target, lateralRayDistance, (int)LayerMaskToCollide))
         {
             if (target.collider.tag == SelectionCodes.GameTags.Player.ToString())
             {
@@ -130,7 +131,7 @@ public class EnemyController : MonoBehaviour
         }
 
         Ray castedRay3 = new Ray(currentPositionOfEnemy.position, -currentPositionOfEnemy.right);
-        if (Physics.Raycast(castedRay3, out target, rayDistance, (int)LayerMaskToCollide))
+        if (Physics.Raycast(castedRay3, out target, lateralRayDistance, (int)LayerMaskToCollide))
         {
             if (target.collider.tag == SelectionCodes.GameTags.Player.ToString())
             {
@@ -161,8 +162,8 @@ public class EnemyController : MonoBehaviour
         //}
 
         Debug.DrawRay(currentPositionOfEnemy.position, currentPositionOfEnemy.forward * rayDistance, Color.red);
-        Debug.DrawRay(currentPositionOfEnemy.position, (currentPositionOfEnemy.right) * rayDistance, Color.blue);
-        Debug.DrawRay(currentPositionOfEnemy.position, (-currentPositionOfEnemy.right) * rayDistance, Color.green);
+        Debug.DrawRay(currentPositionOfEnemy.position, (currentPositionOfEnemy.right) * lateralRayDistance, Color.blue);
+        Debug.DrawRay(currentPositionOfEnemy.position, (-currentPositionOfEnemy.right) * lateralRayDistance, Color.green);
         //Vector3 newRay = currentPositionOfEnemy.forward;
         //newRay.z += rayOffset;
         //Debug.Log(newRay);
