@@ -6,6 +6,8 @@ using UnityEngine;
 public class SightController : MonoBehaviour
 {
     GameController mainGameController = null;
+    public GameObject enemyParent;
+    private bool wasTriggered = false;
 
     // Use this for initialization
     void Awake()
@@ -17,7 +19,7 @@ public class SightController : MonoBehaviour
 
     void Start()
     {
-        mainGameController = GameObject.FindObjectOfType<GameController>();
+        //mainGameController = GameObject.FindObjectOfType<GameController>();
     }
 
     // Update is called once per frame
@@ -29,14 +31,32 @@ public class SightController : MonoBehaviour
     // if the sight box collider intersects with the player
     void OnTriggerEnter(Collider other)
     {
-        if (mainGameController != null)
+       
+        if (other.CompareTag(SelectionCodes.GameTags.Player.ToString()) && !wasTriggered)
         {
-            if (other.CompareTag(SelectionCodes.GameTags.Player.ToString()))
+            //Debug.Log("TRIGGERED");
+            if (enemyParent != null)
             {
-                mainGameController = GameObject.FindObjectOfType<GameController>();
-                mainGameController.CaughtAndStopGame();
+                Debug.Log("TRIGGERED2222");
+                wasTriggered = true;
+                var enemyController = enemyParent.GetComponent<EnemyController>();
+                enemyController.playerInSightArea = true;
             }
         }
 
+    }
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag(SelectionCodes.GameTags.Player.ToString()) && !wasTriggered)
+        {
+            //Debug.Log("TRIGGERED");
+            if (enemyParent != null)
+            {
+                Debug.Log("TRIGGERED2222");
+                wasTriggered = false;
+                var enemyController = enemyParent.GetComponent<EnemyController>();
+                enemyController.playerInSightArea = false;
+            }
+        }
     }
 }

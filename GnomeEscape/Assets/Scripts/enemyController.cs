@@ -16,6 +16,8 @@ public class EnemyController : MonoBehaviour
     public float rayOffset;
     public float lateralRayDistance;
     public bool isStationary = false;
+    public bool playerInSightArea = false;
+    public GameObject player;
 
     public NavMeshAgent NavmeshAgent
     {
@@ -97,6 +99,7 @@ public class EnemyController : MonoBehaviour
             }
         }
         RayCastingDetection();
+        DynamicRayCastToPlayer();
 
     }
 
@@ -161,13 +164,36 @@ public class EnemyController : MonoBehaviour
         //    }
         //}
 
-        Debug.DrawRay(currentPositionOfEnemy.position, currentPositionOfEnemy.forward * rayDistance, Color.red);
-        Debug.DrawRay(currentPositionOfEnemy.position, (currentPositionOfEnemy.right) * lateralRayDistance, Color.blue);
-        Debug.DrawRay(currentPositionOfEnemy.position, (-currentPositionOfEnemy.right) * lateralRayDistance, Color.green);
-        //Vector3 newRay = currentPositionOfEnemy.forward;
-        //newRay.z += rayOffset;
-        //Debug.Log(newRay);
-        //Debug.DrawRay(currentPositionOfEnemy.position, (currentPositionOfEnemy.forward + newRay) * rayDistance, Color.blue);
+        //Debug.DrawRay(currentPositionOfEnemy.position, currentPositionOfEnemy.forward * rayDistance, Color.red);
+        //Debug.DrawRay(currentPositionOfEnemy.position, (currentPositionOfEnemy.right) * lateralRayDistance, Color.blue);
+        //Debug.DrawRay(currentPositionOfEnemy.position, (-currentPositionOfEnemy.right) * lateralRayDistance, Color.green);
 
+
+    }
+
+    public void DynamicRayCastToPlayer()
+    {
+        var playerPosition = this.player.GetComponent<Transform>().position;
+        var currentPositionOfEnemy = this.transform;
+        var direction = playerPosition - currentPositionOfEnemy.position;
+        RaycastHit target;
+
+        Ray castedRay = new Ray(currentPositionOfEnemy.position + Vector3.up / 2, direction.normalized);
+        if (playerInSightArea)
+        {
+            if (Physics.Raycast(castedRay, out target, rayDistance, (int)LayerMaskToCollide))
+            {
+                Debug.Log("HITTDynamic" + target.collider.gameObject);
+                if (target.collider.tag == SelectionCodes.GameTags.Player.ToString())
+                {
+                    //Debug.Log("HITTDynamic");
+                    if (mainGameController != null)
+                    {
+                        mainGameController.CaughtAndStopGame();
+                    }
+                }
+            }
+        }
+       
     }
 }
