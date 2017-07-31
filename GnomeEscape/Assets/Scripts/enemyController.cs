@@ -173,27 +173,30 @@ public class EnemyController : MonoBehaviour
 
     public void DynamicRayCastToPlayer()
     {
-        var playerPosition = this.player.GetComponent<Transform>().position;
-        var currentPositionOfEnemy = this.transform;
-        var direction = playerPosition - currentPositionOfEnemy.position;
-        RaycastHit target;
-
-        Ray castedRay = new Ray(currentPositionOfEnemy.position + Vector3.up / 2, direction.normalized);
-        if (playerInSightArea)
+        if (player != null)
         {
-            if (Physics.Raycast(castedRay, out target, rayDistance, (int)LayerMaskToCollide))
+            var playerPosition = this.player.GetComponent<Transform>().position;
+            var currentPositionOfEnemy = this.transform;
+            var direction = playerPosition - currentPositionOfEnemy.position;
+            RaycastHit target;
+
+            Ray castedRay = new Ray(currentPositionOfEnemy.position + Vector3.up / 2, direction.normalized);
+            if (playerInSightArea)
             {
-                Debug.Log("HITTDynamic" + target.collider.gameObject);
-                if (target.collider.tag == SelectionCodes.GameTags.Player.ToString())
+                if (Physics.Raycast(castedRay, out target, rayDistance, (int)LayerMaskToCollide))
                 {
-                    //Debug.Log("HITTDynamic");
-                    if (mainGameController != null)
+                    Debug.Log("HITTDynamic" + target.collider.gameObject);
+                    if (target.collider.tag == SelectionCodes.GameTags.Player.ToString())
                     {
-                        mainGameController.CaughtAndStopGame();
+                        //Debug.Log("HITTDynamic");
+                        if (mainGameController != null)
+                        {
+                            mainGameController.CaughtAndStopGame();
+                        }
                     }
                 }
             }
         }
-       
+
     }
 }
