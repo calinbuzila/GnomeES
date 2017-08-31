@@ -40,7 +40,7 @@ public class GameController : MonoBehaviour
         finishGamePanel.SetActive(true);
         if (player != null)
         {
-            var playerScript = player.GetComponent<DwarfMain_Controller>();
+            var playerScript = player.GetComponent<dwarfMain_Controller>();
             playerScript.Escaped = true;
         }
 

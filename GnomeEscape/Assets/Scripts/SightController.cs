@@ -39,7 +39,7 @@ public class SightController : MonoBehaviour
             {
                 Debug.Log("TRIGGERED2222");
                 wasTriggered = true;
-                var enemyController = enemyParent.GetComponent<EnemyController>();
+                var enemyController = enemyParent.GetComponent<enemyController>();
                 enemyController.playerInSightArea = true;
             }
         }
@@ -54,7 +54,7 @@ public class SightController : MonoBehaviour
             {
                 Debug.Log("TRIGGERED2222");
                 wasTriggered = false;
-                var enemyController = enemyParent.GetComponent<EnemyController>();
+                var enemyController = enemyParent.GetComponent<enemyController>();
                 enemyController.playerInSightArea = false;
             }
         }

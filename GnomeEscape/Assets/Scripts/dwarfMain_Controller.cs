@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DwarfMain_Controller : MonoBehaviour
+public class dwarfMain_Controller : MonoBehaviour
 {
 
     // Use this for initialization
