@@ -49,7 +49,7 @@
      <Compile Include="Assets\Scripts\AvoidBeingSeen.cs" />
      <Compile Include="Assets\Scripts\EscapeController.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
-     <Compile Include="Assets\Scripts\GoldRotate.cs" />
+     <Compile Include="Assets\Scripts\GoldHandler.cs" />
      <Compile Include="Assets\Scripts\GoodJobFeedback.cs" />
      <Compile Include="Assets\Scripts\InstructionsTrigger.cs" />
      <Compile Include="Assets\Scripts\MenuController.cs" />
