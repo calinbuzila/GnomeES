@@ -9,7 +9,8 @@ namespace Assets
     {
         public enum GameTags
         {
-            Player
+            Player,
+			MovementInstructions
         }
         public enum GameScenes
         {

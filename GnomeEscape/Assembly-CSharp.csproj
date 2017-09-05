@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\EscapeController.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Scripts\GoldRotate.cs" />
+     <Compile Include="Assets\Scripts\InstructionsTrigger.cs" />
      <Compile Include="Assets\Scripts\MenuController.cs" />
      <Compile Include="Assets\Scripts\SightController.cs" />
      <Compile Include="Assets\Scripts\cameraLook.cs" />

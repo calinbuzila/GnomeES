@@ -8,7 +8,7 @@ public class GameController : MonoBehaviour
 {
     public GameObject finishGamePanel;
     public GameObject player;
-
+	public GameObject movementInstructions;
     void Awake()
     {
         finishGamePanel.SetActive(false);
@@ -47,4 +47,9 @@ public class GameController : MonoBehaviour
         //TODO canvas menu
 
     }
+
+	public void SetInstructionPanelToInvisible()
+	{
+		movementInstructions.SetActive (false);
+	}
 }
