@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
     public GameObject finishGamePanel;
     public GameObject player;
 	public GameObject movementInstructions;
+	public GameObject avoidBeingSeen;
     void Awake()
     {
         finishGamePanel.SetActive(false);
@@ -51,5 +52,15 @@ public class GameController : MonoBehaviour
 	public void SetInstructionPanelToInvisible()
 	{
 		movementInstructions.SetActive (false);
+	}
+
+	public void SetAvoidBeingSeenToVisible()
+	{
+		avoidBeingSeen.SetActive (true);
+	}
+
+	public void SetAvoidBeingSeenToInvisible()
+	{
+		avoidBeingSeen.SetActive (false);
 	}
 }
