@@ -10,9 +10,12 @@ public class GameController : MonoBehaviour
     public GameObject player;
 	public GameObject movementInstructions;
 	public GameObject avoidBeingSeen;
+	public GameObject goodJobText;
     void Awake()
     {
         finishGamePanel.SetActive(false);
+		goodJobText.SetActive (false);
+		SetAvoidBeingSeenToInvisible ();
     }
     // Use this for initialization
     void Start()
