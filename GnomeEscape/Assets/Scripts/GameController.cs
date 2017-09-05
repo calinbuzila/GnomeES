@@ -3,18 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
     public GameObject finishGamePanel;
     public GameObject player;
-	public GameObject movementInstructions;
-	public GameObject avoidBeingSeen;
-	public GameObject goodJobText;
+	public GameObject movementInstructionsPanel;
+	public GameObject avoidBeingSeenPanel;
+	public GameObject goodJobPanel;
     void Awake()
     {
         finishGamePanel.SetActive(false);
-		goodJobText.SetActive (false);
+		goodJobPanel.SetActive (false);
+		SetGoodJobTextAndDisplay ("TESTARE");
 		SetAvoidBeingSeenToInvisible ();
     }
     // Use this for initialization
@@ -54,16 +56,30 @@ public class GameController : MonoBehaviour
 
 	public void SetInstructionPanelToInvisible()
 	{
-		movementInstructions.SetActive (false);
+		movementInstructionsPanel.SetActive (false);
 	}
 
 	public void SetAvoidBeingSeenToVisible()
 	{
-		avoidBeingSeen.SetActive (true);
+		avoidBeingSeenPanel.SetActive (true);
 	}
 
 	public void SetAvoidBeingSeenToInvisible()
 	{
-		avoidBeingSeen.SetActive (false);
+		avoidBeingSeenPanel.SetActive (false);
+	}
+
+	public void SetGoodJobTextAndDisplay(string textToDisplay)
+	{
+		goodJobPanel.SetActive (true);
+		Text textFromPanel = goodJobPanel.GetComponentInChildren<Text> ();
+		textFromPanel.text = textToDisplay;
+
+	}
+
+	public void SetGoodJobPanelToInvisible()
+	{
+		goodJobPanel.SetActive (false);
+
 	}
 }
