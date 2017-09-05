@@ -12,17 +12,19 @@ public class GameController : MonoBehaviour
 	public GameObject movementInstructionsPanel;
 	public GameObject avoidBeingSeenPanel;
 	public GameObject goodJobPanel;
+	bool showAgainMovementInstructions = true;
+	bool showAgainBeingSeen = true;
     void Awake()
     {
         finishGamePanel.SetActive(false);
 		goodJobPanel.SetActive (false);
-		SetGoodJobTextAndDisplay ("TESTARE");
+		//SetGoodJobTextAndDisplay ("TESTARE");
 		SetAvoidBeingSeenToInvisible ();
     }
     // Use this for initialization
     void Start()
     {
-
+		showAgainBeingSeen = true;
     }
 
     // Update is called once per frame
@@ -61,19 +63,23 @@ public class GameController : MonoBehaviour
 
 	public void SetAvoidBeingSeenToVisible()
 	{
+		Debug.Log (showAgainBeingSeen);
+		if(showAgainBeingSeen == true)
 		avoidBeingSeenPanel.SetActive (true);
 	}
 
 	public void SetAvoidBeingSeenToInvisible()
 	{
 		avoidBeingSeenPanel.SetActive (false);
+		showAgainBeingSeen = false;
 	}
 
-	public void SetGoodJobTextAndDisplay(string textToDisplay)
+	public void SetGoodJobToVisibleAndSetText(string textToDisplay)
 	{
 		goodJobPanel.SetActive (true);
 		Text textFromPanel = goodJobPanel.GetComponentInChildren<Text> ();
-		textFromPanel.text = textToDisplay;
+
+		if(!string.IsNullOrEmpty(textToDisplay)) textFromPanel.text = textToDisplay;
 
 	}
 

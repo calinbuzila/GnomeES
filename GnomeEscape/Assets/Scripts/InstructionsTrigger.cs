@@ -18,8 +18,10 @@ public class InstructionsTrigger : MonoBehaviour {
 		
 	}
 
-	void OnTriggerEnter(Collider other) {
-		if (other.CompareTag (SelectionCodes.GameTags.Player.ToString ())) {
+	void OnTriggerEnter(Collider other) 
+	{
+		if (other.CompareTag (SelectionCodes.GameTags.Player.ToString ())) 
+		{
 			mainGameController.SetInstructionPanelToInvisible ();
 		}
 	}

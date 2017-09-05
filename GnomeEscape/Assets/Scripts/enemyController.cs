@@ -145,25 +145,7 @@ public class enemyController : MonoBehaviour
                 }
             }
         }
-
-        //Ray castedRay4 = new Ray(currentPositionOfEnemy.position, currentPositionOfEnemy.right + new Vector3(rayOffset,currentPositionOfEnemy.position.y, currentPositionOfEnemy.position.z));
-        //if (Physics.Raycast(castedRay, out target, rayDistance, (int)LayerMaskToCollide))
-        //{
-        //    if (target.collider.tag == SelectionCodes.GameTags.Player.ToString())
-        //    {
-
-        //    }
-        //}
-
-        //Ray castedRay5 = new Ray(currentPositionOfEnemy.position, -currentPositionOfEnemy.right + new Vector3(rayOffset,currentPositionOfEnemy.position.y, currentPositionOfEnemy.position.z));
-        //if (Physics.Raycast(castedRay, out target, rayDistance, (int)LayerMaskToCollide))
-        //{
-        //    if (target.collider.tag == SelectionCodes.GameTags.Player.ToString())
-        //    {
-
-        //    }
-        //}
-
+			
         //Debug.DrawRay(currentPositionOfEnemy.position, currentPositionOfEnemy.forward * rayDistance, Color.red);
         //Debug.DrawRay(currentPositionOfEnemy.position, (currentPositionOfEnemy.right) * lateralRayDistance, Color.blue);
         //Debug.DrawRay(currentPositionOfEnemy.position, (-currentPositionOfEnemy.right) * lateralRayDistance, Color.green);

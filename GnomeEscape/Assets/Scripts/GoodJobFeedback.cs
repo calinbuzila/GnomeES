@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Assets;
 
-public class AvoidBeingSeen : MonoBehaviour {
+public class GoodJobFeedback : MonoBehaviour {
 
 	GameController mainGameController = null;
 
@@ -12,25 +12,24 @@ public class AvoidBeingSeen : MonoBehaviour {
 	{
 		mainGameController = GameObject.FindObjectOfType<GameController>();
 	}
-
+	
 	// Update is called once per frame
 	void Update () {
-
+		
 	}
-
 	void OnTriggerEnter(Collider other) 
 	{
 		if (other.CompareTag (SelectionCodes.GameTags.Player.ToString ())) 
 		{
-			mainGameController.SetAvoidBeingSeenToVisible();
+			mainGameController.SetGoodJobToVisibleAndSetText("");
+			StartCoroutine (GooJobToInvisible());
 		}
 	}
 
-	void OnTriggerExit(Collider other) 
+	IEnumerator GooJobToInvisible()
 	{
-		if (other.CompareTag (SelectionCodes.GameTags.Player.ToString ())) 
-		{
-			mainGameController.SetAvoidBeingSeenToInvisible();
-		}
+		yield return new WaitForSeconds (3);
+		mainGameController.SetGoodJobPanelToInvisible();
 	}
+	
 }
