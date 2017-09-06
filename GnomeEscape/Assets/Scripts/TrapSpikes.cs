@@ -8,7 +8,7 @@ public class TrapSpikes : MonoBehaviour {
 	public Vector3 initialPos;
 	public Vector3 finalPos;
 	public bool moveUp = true;
-	Vector3 endPos;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -17,7 +17,7 @@ public class TrapSpikes : MonoBehaviour {
 	void Update () {
 		//this.transform.position += new Vector3 (this.transform.position.x, 1, this.transform.position.z) * Time.deltaTime;
 
-		Debug.Log (finalPos.y);
+		//Debug.Log (finalPos.y);
 		if (moveUp) {
 			if (this.transform.position.y < finalPos.y) {
 				transform.Translate (Vector2.up * 0.2f * Time.deltaTime);
@@ -38,7 +38,7 @@ public class TrapSpikes : MonoBehaviour {
 
 		if (other.CompareTag(SelectionCodes.GameTags.Player.ToString()))
 		{
-			
+			Debug.Log ("TRAPPED");
 		}
 
 	}

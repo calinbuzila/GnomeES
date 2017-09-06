@@ -112,7 +112,7 @@ public class enemyController : MonoBehaviour
         {
             if (target.collider.tag == SelectionCodes.GameTags.Player.ToString())
             {
-                Debug.Log("HITT");
+                //Debug.Log("HITT");
                 if (mainGameController != null)
                 {
                     mainGameController.CaughtAndStopGame();
@@ -125,7 +125,7 @@ public class enemyController : MonoBehaviour
         {
             if (target.collider.tag == SelectionCodes.GameTags.Player.ToString())
             {
-                Debug.Log("HITT+++");
+                //Debug.Log("HITT+++");
                 if (mainGameController != null)
                 {
                     mainGameController.CaughtAndStopGame();
@@ -146,9 +146,9 @@ public class enemyController : MonoBehaviour
             }
         }
 			
-        //Debug.DrawRay(currentPositionOfEnemy.position, currentPositionOfEnemy.forward * rayDistance, Color.red);
-        //Debug.DrawRay(currentPositionOfEnemy.position, (currentPositionOfEnemy.right) * lateralRayDistance, Color.blue);
-        //Debug.DrawRay(currentPositionOfEnemy.position, (-currentPositionOfEnemy.right) * lateralRayDistance, Color.green);
+        Debug.DrawRay(currentPositionOfEnemy.position, currentPositionOfEnemy.forward * rayDistance, Color.red);
+        Debug.DrawRay(currentPositionOfEnemy.position, (currentPositionOfEnemy.right) * lateralRayDistance, Color.blue);
+        Debug.DrawRay(currentPositionOfEnemy.position, (-currentPositionOfEnemy.right) * lateralRayDistance, Color.green);
 
 
     }
@@ -167,7 +167,7 @@ public class enemyController : MonoBehaviour
             {
                 if (Physics.Raycast(castedRay, out target, rayDistance, (int)LayerMaskToCollide))
                 {
-                    Debug.Log("HITTDynamic" + target.collider.gameObject);
+                    //Debug.Log("HITTDynamic" + target.collider.gameObject);
                     if (target.collider.tag == SelectionCodes.GameTags.Player.ToString())
                     {
                         //Debug.Log("HITTDynamic");

@@ -63,7 +63,7 @@ public class GameController : MonoBehaviour
 
 	public void SetAvoidBeingSeenToVisible()
 	{
-		Debug.Log (showAgainBeingSeen);
+		//Debug.Log (showAgainBeingSeen);
 		if(showAgainBeingSeen == true)
 		avoidBeingSeenPanel.SetActive (true);
 	}
