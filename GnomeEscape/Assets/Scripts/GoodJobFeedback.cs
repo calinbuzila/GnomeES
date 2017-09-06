@@ -6,7 +6,7 @@ using Assets;
 public class GoodJobFeedback : MonoBehaviour {
 
 	GameController mainGameController = null;
-
+	bool wasShown = false;
 	// Use this for initialization
 	void Start()
 	{
@@ -19,11 +19,19 @@ public class GoodJobFeedback : MonoBehaviour {
 	}
 	void OnTriggerEnter(Collider other) 
 	{
-		if (other.CompareTag (SelectionCodes.GameTags.Player.ToString ())) 
+		if(!wasShown)
 		{
-			mainGameController.SetGoodJobToVisibleAndSetText("");
-			StartCoroutine (GooJobToInvisible());
+			if (other.CompareTag (SelectionCodes.GameTags.Player.ToString ())) 
+			{
+				mainGameController.SetGoodJobToVisibleAndSetText("");
+				StartCoroutine (GooJobToInvisible());
+			}
 		}
+	}
+
+	void OnTriggerExit(Collider other) 
+	{
+		wasShown = true;
 	}
 
 	IEnumerator GooJobToInvisible()

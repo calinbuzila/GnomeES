@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
 	public GameObject movementInstructionsPanel;
 	public GameObject avoidBeingSeenPanel;
 	public GameObject goodJobPanel;
+	public GameObject goodJobPanelCollectingGold;
 	bool showAgainMovementInstructions = true;
 	bool showAgainBeingSeen = true;
 
@@ -26,6 +27,7 @@ public class GameController : MonoBehaviour
     {
         finishGamePanel.SetActive(false);
 		goodJobPanel.SetActive (false);
+		goodJobPanelCollectingGold.SetActive (false);
 		//SetGoodJobTextAndDisplay ("TESTARE");
 		SetAvoidBeingSeenToInvisible ();
     }
@@ -123,5 +125,17 @@ public class GameController : MonoBehaviour
 	{
 		counter++;
 		countGoldText.text = "Gold:" + counter;
+	}
+
+	public void SetGoodJobCollectingGoldToVisible()
+	{
+		goodJobPanelCollectingGold.SetActive (true);
+
+	}
+
+	public void SetGoodJobCollectingGoldToInvisible()
+	{
+		goodJobPanelCollectingGold.SetActive (false);
+
 	}
 }

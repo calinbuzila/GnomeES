@@ -32,9 +32,17 @@ public class GoldHandler : MonoBehaviour {
 			if (mainGameController != null)
 			{
 				mainGameController.CountGoldCoins();
+				mainGameController.SetGoodJobCollectingGoldToVisible ();
+				StartCoroutine (GoodJobCollectingGold());
 			}
 
 		}
+	}
+
+	IEnumerator GoodJobCollectingGold()
+	{
+		yield return new WaitForSeconds (1);
+		mainGameController.SetGoodJobCollectingGoldToInvisible();
 	}
 		
 }

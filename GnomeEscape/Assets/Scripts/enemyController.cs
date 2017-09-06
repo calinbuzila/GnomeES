@@ -167,10 +167,10 @@ public class enemyController : MonoBehaviour
             {
                 if (Physics.Raycast(castedRay, out target, rayDistance, (int)LayerMaskToCollide))
                 {
-                    Debug.Log("HITTDynamic" + target.collider.gameObject);
+                    //Debug.Log("HITTDynamic" + target.collider.gameObject);
                     if (target.collider.tag == SelectionCodes.GameTags.Player.ToString())
                     {
-                        Debug.Log("HITTDynamic");
+                        //Debug.Log("HITTDynamic");
                         if (mainGameController != null)
                         {
                             mainGameController.CaughtAndStopGame();
