@@ -15,6 +15,8 @@ public class dwarfMain_Controller : MonoBehaviour
     private float tempSpeed;
     private bool escaped = false;
     private Animator animatorController = null;
+	GameController mainGameController = null;
+
 
     public bool Escaped
     {
@@ -42,6 +44,7 @@ public class dwarfMain_Controller : MonoBehaviour
     void Start()
     {
         characterController = this.GetComponent<CharacterController>();
+		mainGameController = GameObject.FindObjectOfType<GameController>();
     }
 
     // Update is called once per frame
@@ -61,6 +64,7 @@ public class dwarfMain_Controller : MonoBehaviour
             if (Input.GetKey(KeyCode.W))
             {
                 movementVector = transform.forward * speed;
+				mainGameController.controlTimer = true;
             }
 
             if (Input.GetKey(KeyCode.S))

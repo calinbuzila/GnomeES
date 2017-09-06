@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour
 	public GameObject goodJobPanelCollectingGold;
 	bool showAgainMovementInstructions = true;
 	bool showAgainBeingSeen = true;
+	public bool controlTimer = false;
 
 	public Text countGoldText;
 	public Text gameTimer;
@@ -51,14 +52,14 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (gamesPlayed >= 2 && gamesPlayed < 5) 
-		{
-			startingTimer -= Time.deltaTime;
-			gameTimer.text = startingTimer.ToString ();
-			if (startingTimer < 0) 
-			{
-				gameTimer.text = "";
-				CaughtAndStopGame ();
+		if (controlTimer) {
+			if (gamesPlayed >= 2 && gamesPlayed < 5) {
+				startingTimer -= Time.deltaTime;
+				gameTimer.text = startingTimer.ToString ();
+				if (startingTimer < 0) {
+					gameTimer.text = "";
+					CaughtAndStopGame ();
+				}
 			}
 		}
 
@@ -82,6 +83,7 @@ public class GameController : MonoBehaviour
             var playerScript = player.GetComponent<dwarfMain_Controller>();
             playerScript.Escaped = true;
 			gamesPlayed++;
+			controlTimer = false;
         }
 
         //TODO canvas menu
