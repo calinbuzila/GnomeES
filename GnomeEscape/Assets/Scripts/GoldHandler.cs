@@ -7,10 +7,13 @@ public class GoldHandler : MonoBehaviour {
 	public AudioClip audioClip;
     AudioSource audioSource;
 	private bool play;
+	GameController mainGameController = null;
+
 	// Use this for initialization
 	void Start () {
 		play = true;
 		audioSource = this.GetComponent<AudioSource> ();
+		mainGameController = GameObject.FindObjectOfType<GameController>();
 	}
 	
 	// Update is called once per frame
@@ -26,6 +29,12 @@ public class GoldHandler : MonoBehaviour {
 			if (play) audioSource.PlayOneShot (audioClip);
 			play = false;
 			this.GetComponent<MeshRenderer> ().enabled = false;
+			if (mainGameController != null)
+			{
+				mainGameController.CountGoldCoins();
+			}
+
 		}
 	}
+		
 }
