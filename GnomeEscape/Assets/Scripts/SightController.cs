@@ -37,7 +37,6 @@ public class SightController : MonoBehaviour
             //Debug.Log("TRIGGERED");
             if (enemyParent != null)
             {
-                Debug.Log("TRIGGERED2222");
                 wasTriggered = true;
                 var enemyController = enemyParent.GetComponent<enemyController>();
                 enemyController.playerInSightArea = true;
@@ -52,7 +51,6 @@ public class SightController : MonoBehaviour
             //Debug.Log("TRIGGERED");
             if (enemyParent != null)
             {
-                Debug.Log("TRIGGERED2222");
                 wasTriggered = false;
                 var enemyController = enemyParent.GetComponent<enemyController>();
                 enemyController.playerInSightArea = false;
