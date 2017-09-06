@@ -67,9 +67,14 @@ public class dwarfMain_Controller : MonoBehaviour
 				mainGameController.controlTimer = true;
             }
 
+			if (Input.GetKey (KeyCode.A) || Input.GetKey (KeyCode.D)) {
+				mainGameController.controlTimer = true;
+			}
+
             if (Input.GetKey(KeyCode.S))
             {
                 movementVector = -transform.forward * speed;
+				mainGameController.controlTimer = true;
             }
 
             //next iteration of fixed update, the gravity will be applied to vertical movement;
