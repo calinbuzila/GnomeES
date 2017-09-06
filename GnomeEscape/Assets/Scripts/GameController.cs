@@ -33,7 +33,7 @@ public class GameController : MonoBehaviour
     void Start()
     {
 		counter = 0;
-		Debug.Log (gamesPlayed);
+		//Debug.Log (gamesPlayed);
 		if (gamesPlayed < 2) {
 			gameTimer.text = "";
 		} else {
