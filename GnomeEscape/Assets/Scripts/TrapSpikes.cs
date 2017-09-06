@@ -33,13 +33,5 @@ public class TrapSpikes : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter(Collider other)
-	{
 
-		if (other.CompareTag(SelectionCodes.GameTags.Player.ToString()))
-		{
-			Debug.Log ("TRAPPED");
-		}
-
-	}
 }

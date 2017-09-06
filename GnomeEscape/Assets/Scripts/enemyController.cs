@@ -138,7 +138,7 @@ public class enemyController : MonoBehaviour
         {
             if (target.collider.tag == SelectionCodes.GameTags.Player.ToString())
             {
-                Debug.Log("HITT---");
+                //Debug.Log("HITT---");
                 if (mainGameController != null)
                 {
                     mainGameController.CaughtAndStopGame();

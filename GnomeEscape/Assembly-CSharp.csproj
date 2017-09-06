@@ -54,6 +54,7 @@
      <Compile Include="Assets\Scripts\InstructionsTrigger.cs" />
      <Compile Include="Assets\Scripts\MenuController.cs" />
      <Compile Include="Assets\Scripts\SightController.cs" />
+     <Compile Include="Assets\Scripts\SpikeTriggerDeath.cs" />
      <Compile Include="Assets\Scripts\TrapSpikes.cs" />
      <Compile Include="Assets\Scripts\cameraLook.cs" />
      <Compile Include="Assets\Scripts\dwarfMain_Controller.cs" />
