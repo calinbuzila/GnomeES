@@ -5,6 +5,8 @@ using UnityEngine;
 public class cameraLook : MonoBehaviour
 {
 	public float mouseLookSpeedY;
+	public float minRotation;
+	public float maxRotation;
     // Use this for initialization
     void Start()
     {
@@ -17,6 +19,6 @@ public class cameraLook : MonoBehaviour
 		var ax = Input.GetAxis ("Mouse Y") * mouseLookSpeedY;
 		var axY =0.0f;
 		var axZ = 0.0f;
-		this.transform.Rotate(new Vector3(-ax,axY, axZ));
+		this.transform.Rotate(new Vector3(-ax,Mathf.Clamp(axY, -1, 1), axZ));
     }
 }
