@@ -19,6 +19,7 @@ public class GameController : MonoBehaviour
 
 	public Text countGoldText;
 	public Text gameTimer;
+	// counter variable used for counting gold coins collected
 	private static int counter;
 
 	public float startingTimer;
@@ -35,14 +36,24 @@ public class GameController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-		counter = 0;
+		
 		//Debug.Log (gamesPlayed);
-		if (gamesPlayed < 2) {
+		if (gamesPlayed < 1) {
+			counter = 0;
 			gameTimer.text = "";
 		} else {
+			Debug.Log (startingTimer);
+			if (PlayerPrefs.HasKey ("timer"))
+				startingTimer = startingTimer;
+			else
+			startingTimer = startingTimer * counter;
+			PlayerPrefs.SetFloat ("timer", startingTimer);
+			Debug.Log (startingTimer + "!!!!!!!");
+			counter = 0;
 			gameTimer.text = "Timer:";
 		}
 		if (gamesPlayed >= 5) {
+			counter = 0;
 			startingTimer = 60;
 		}
 		showAgainBeingSeen = true;
@@ -53,7 +64,7 @@ public class GameController : MonoBehaviour
     void Update()
     {
 		if (controlTimer) {
-			if (gamesPlayed >= 2 && gamesPlayed < 5) {
+			if (gamesPlayed >= 1 && gamesPlayed < 5) {
 				startingTimer -= Time.deltaTime;
 				gameTimer.text = startingTimer.ToString ();
 				if (startingTimer < 0) {

@@ -36,7 +36,7 @@ public class GoodJobFeedback : MonoBehaviour {
 
 	IEnumerator GooJobToInvisible()
 	{
-		yield return new WaitForSeconds (3);
+		yield return new WaitForSeconds (2);
 		mainGameController.SetGoodJobPanelToInvisible();
 	}
 	
