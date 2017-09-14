@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour
 	public GameObject avoidBeingSeenPanel;
 	public GameObject goodJobPanel;
 	public GameObject goodJobPanelCollectingGold;
+	// showAgain variables are used to control the panels shown to the player only once.
 	bool showAgainMovementInstructions = true;
 	bool showAgainBeingSeen = true;
 	public bool controlTimer = false;
@@ -23,6 +24,7 @@ public class GameController : MonoBehaviour
 	private static int counter;
 
 	public float startingTimer;
+	//gamesplayed is a variable used to set the timer or not on consecutive plays
 	public static int gamesPlayed;
 
     void Awake()
@@ -45,8 +47,11 @@ public class GameController : MonoBehaviour
 			Debug.Log (startingTimer);
 			if (PlayerPrefs.HasKey ("timer"))
 				startingTimer = startingTimer;
-			else
-			startingTimer = startingTimer * counter;
+			else 
+			{ if (counter == 0)
+					counter = 1;
+				startingTimer = startingTimer * counter;
+			}
 			PlayerPrefs.SetFloat ("timer", startingTimer);
 			Debug.Log (startingTimer + "!!!!!!!");
 			counter = 0;

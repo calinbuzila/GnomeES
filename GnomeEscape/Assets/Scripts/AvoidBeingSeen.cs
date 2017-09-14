@@ -18,6 +18,7 @@ public class AvoidBeingSeen : MonoBehaviour {
 
 	}
 
+	// on trigger enter if the object that entered the box collider is the player then trigger the help text for avoid being seen
 	void OnTriggerEnter(Collider other) 
 	{
 		if (other.CompareTag (SelectionCodes.GameTags.Player.ToString ())) 
@@ -25,7 +26,7 @@ public class AvoidBeingSeen : MonoBehaviour {
 			mainGameController.SetAvoidBeingSeenToVisible();
 		}
 	}
-
+	// on trigger exit resets the text and set's it to invisible
 	void OnTriggerExit(Collider other) 
 	{
 		if (other.CompareTag (SelectionCodes.GameTags.Player.ToString ())) 

@@ -10,9 +10,12 @@ public class dwarfMain_Controller : MonoBehaviour
     public float speed;
     public float rotationSpeed;
     private CharacterController characterController;
+	// variable gravity is used to see how many units on the vertical axis the player falls on fixed time rates
     public float gravity;
     public float jumpSpeed;
+	// temp speed is applied to gravity
     private float tempSpeed;
+	//escaped is a control variable used to block user keys/movement when finishing the game
     private bool escaped = false;
     private Animator animatorController = null;
 	GameController mainGameController = null;
