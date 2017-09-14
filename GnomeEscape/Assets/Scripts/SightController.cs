@@ -44,6 +44,7 @@ public class SightController : MonoBehaviour
         }
 
     }
+	// if the player passed the trigger sight collider then the dynamic raycast is not cast anymore
     void OnTriggerExit(Collider other)
     {
         if (other.CompareTag(SelectionCodes.GameTags.Player.ToString()) && !wasTriggered)

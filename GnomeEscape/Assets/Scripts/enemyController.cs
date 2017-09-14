@@ -9,13 +9,17 @@ public class enemyController : MonoBehaviour
 
     // Use this for initialization
 
+	//targets are the waypoints where the enemies move
     public List<Transform> targets;
     public float rayDistance;
+	// layer is set in the upper part of the inspector for the layers on which the raycast actions.
     public LayerMask LayerMaskToCollide;
     private NavMeshAgent navmeshAgent;
+	// error rate used when raycasting
     public float rayOffset;
     public float lateralRayDistance;
     public bool isStationary = false;
+	//playerinsight is used for the dynamic raycast when he triggers the sight box collider then thedynamic raycasts are cast
     public bool playerInSightArea = false;
     public GameObject player;
 
@@ -37,6 +41,7 @@ public class enemyController : MonoBehaviour
     }
     GameController mainGameController = null;
 
+	// the waypoints are set by their transform position in the scene, after finishing all the waypoints in the array, the enemy returns to the intial position and starts again passing through waypoints
     void Start()
     {
         //Debug.Log(targets.Length + "TARGETLEN");
@@ -70,7 +75,7 @@ public class enemyController : MonoBehaviour
             // substract a difference vector between destination and current enemy agent and compare it to te final stoppingdistance, which is usually 0 and an errorRate is added to improve calculations
             if (Vector3.Distance(navmeshAgent.destination, navmeshAgent.transform.position) < navmeshAgent.stoppingDistance + errorRate)
             {
-
+				//checking if the navmeshAgent component has waypoints attach has a destination one.
                 if (!navmeshAgent.hasPath)
                 {
                     if (currentTarget >= targets.Capacity - 1)
@@ -108,6 +113,7 @@ public class enemyController : MonoBehaviour
         RaycastHit target;
         var currentPositionOfEnemy = this.transform;
         Ray castedRay = new Ray(currentPositionOfEnemy.position, currentPositionOfEnemy.forward);
+		// raycast in forward direction, if it hits an object in the scene it outputs it in target variable, cast only what is specified in the layermastToCollide
         if (Physics.Raycast(castedRay, out target, rayDistance, (int)LayerMaskToCollide))
         {
             if (target.collider.tag == SelectionCodes.GameTags.Player.ToString())
@@ -119,7 +125,7 @@ public class enemyController : MonoBehaviour
                 }
             }
         }
-
+		// raycast in 90 degree right direction, if it hits an object in the scene it outputs it in target variable, cast only what is specified in the layermastToCollide
         Ray castedRay2 = new Ray(currentPositionOfEnemy.position, currentPositionOfEnemy.right);
         if (Physics.Raycast(castedRay2, out target, lateralRayDistance, (int)LayerMaskToCollide))
         {
@@ -132,7 +138,7 @@ public class enemyController : MonoBehaviour
                 }
             }
         }
-
+		// raycast in 90 degree left direction, if it hits an object in the scene it outputs it in target variable, cast only what is specified in the layermastToCollide
         Ray castedRay3 = new Ray(currentPositionOfEnemy.position, -currentPositionOfEnemy.right);
         if (Physics.Raycast(castedRay3, out target, lateralRayDistance, (int)LayerMaskToCollide))
         {
@@ -153,6 +159,8 @@ public class enemyController : MonoBehaviour
 
     }
 
+	// when the player steps in the in the box collider of the sight object this method triggers the dynamic raycast towards the player, if the first object hit is the player then the game ends.
+	// the method is called from SIghtController.
     public void DynamicRayCastToPlayer()
     {
         if (player != null)

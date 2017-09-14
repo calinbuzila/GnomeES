@@ -13,7 +13,8 @@ public class TrapSpikes : MonoBehaviour {
 	void Start () {
 		
 	}
-	
+
+	//spikes, the same as gold coins rotation they move up and down over time, dependend on framerate
 	void Update () {
 		//this.transform.position += new Vector3 (this.transform.position.x, 1, this.transform.position.z) * Time.deltaTime;
 

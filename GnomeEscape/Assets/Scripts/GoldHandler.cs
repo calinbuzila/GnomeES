@@ -20,7 +20,7 @@ public class GoldHandler : MonoBehaviour {
 	void Update () {
 		this.transform.Rotate (new Vector3 (0, 70, 0) * Time.deltaTime);
 	}
-
+	// when the player collects the coin a sound is played and also in time a rotation is applied to the gold coin(Update() method)
 	void OnTriggerEnter(Collider other) 
 	{
 		if (other.CompareTag (SelectionCodes.GameTags.Player.ToString ())) 
