@@ -45,8 +45,11 @@ public class GameController : MonoBehaviour
 			Debug.Log (startingTimer);
 			if (PlayerPrefs.HasKey ("timer"))
 				startingTimer = startingTimer;
-			else
-			startingTimer = startingTimer * counter;
+			else 
+			{ if (counter == 0)
+					counter = 1;
+				startingTimer = startingTimer * counter;
+			}
 			PlayerPrefs.SetFloat ("timer", startingTimer);
 			Debug.Log (startingTimer + "!!!!!!!");
 			counter = 0;
